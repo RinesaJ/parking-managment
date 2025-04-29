@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Generate Parking Bill</h2>
+    
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+    
+    <form method="POST">
+        <div class="form-group">
+            <label for="vno">Vehicle Number (XXXX-XX-XXXX):</label>
+            <input type="text" id="vno" name="vno" required pattern="[A-Za-z0-9]{4}-[A-Za-z0-9]{2}-[A-Za-z0-9]{4}">
+        </div>
+        
+        <div class="form-group">
+            <label for="duration">Parking Duration:</label>
+            <select id="duration" name="duration" required>
+                <option value="15">15 minutes</option>
+                <option value="30">30 minutes</option>
+                <option value="45">45 minutes</option>
+                <option value="60">1 hour</option>
+                <option value="120">2 hours</option>
+                <option value="180">3 hours</option>
+                <option value="240">4 hours</option>
+                <option value="300">5 hours</option>
+                <option value="360">6 hours</option>
+            </select>
+        </div>
+        
+        <button type="submit">Calculate Bill</button>
+    </form>
+    
+    {% if show_result %}
+        <div class="bill-result">
+            <h3>Parking Bill Receipt</h3>
+            <div class="bill-details">
+                <p><strong>Vehicle Number:</strong> {{ vno }}</p>
+                <p><strong>Check-in Date:</strong> {{ checkin_date }}</p>
+                <p><strong>Check-in Time:</strong> {{ checkin_time }}</p>
+                <p><strong>Vehicle Type:</strong> {{ vtype }}</p>
+                <p><strong>Duration:</strong> {{ duration_minutes }} minutes</p>
+                <hr>
+                <p><strong>Parking Charge:</strong> €{{ "%.2f"|format(charge) }}</p>
+            </div>
+            
+            <div class="bill-actions">
+                <button id="print-button" onclick="printAndClear()">Print Bill</button>
+            </div>
+        </div>
+        
+        <script>
+            function printAndClear() {
+                // Trigger the print dialog
+                window.print();
+                
+                // Delay clearing the bill to allow the print dialog to complete
+                setTimeout(() => {
+                    window.location.href = "{{ url_for('generate_bill') }}";
+                }, 1000); // Wait for 1 second
+            }
+        </script>
+    {% endif %}
+{% endblock %}

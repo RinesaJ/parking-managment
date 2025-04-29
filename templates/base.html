@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Parking Management System</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/entry">Vehicle Entry</a></li>
+                <li><a href="/remove">Remove Vehicle</a></li>
+                <li><a href="/view">View Parked Vehicles</a></li>
+                <li><a href="/spaces">Available Spaces</a></li>
+                <li><a href="/rates">Rates</a></li>
+                <li><a href="/bill">Generate Bill</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2025 Parking Management System</p>
+    </footer>
+</body>
+</html>

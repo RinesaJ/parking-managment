@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Available Parking Spaces</h2>
+    
+    <div class="spaces-container">
+        <div class="space-type">
+            <h3>Bicycles</h3>
+            <div class="space-count">{{ counts['bicycles'] }}</div>
+            <div class="space-status {% if counts['bicycles'] > 20 %}available{% else %}limited{% endif %}">
+                {% if counts['bicycles'] > 20 %}Available{% else %}Limited{% endif %}
+            </div>
+        </div>
+        
+        <div class="space-type">
+            <h3>Bikes</h3>
+            <div class="space-count">{{ counts['bikes'] }}</div>
+            <div class="space-status {% if counts['bikes'] > 30 %}available{% else %}limited{% endif %}">
+                {% if counts['bikes'] > 30 %}Available{% else %}Limited{% endif %}
+            </div>
+        </div>
+        
+        <div class="space-type">
+            <h3>Cars</h3>
+            <div class="space-count">{{ counts['cars'] }}</div>
+            <div class="space-status {% if counts['cars'] > 50 %}available{% else %}limited{% endif %}">
+                {% if counts['cars'] > 50 %}Available{% else %}Limited{% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

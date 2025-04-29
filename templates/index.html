@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Welcome to Parking Management System</h2>
+    <div class="dashboard">
+        <div class="dashboard-item">
+            <h3>Total Parked Vehicles</h3>
+            <p>{{ parking_data['Vehicle_Number']|length - 1 }}</p>
+        </div>
+        <div class="dashboard-item">
+            <h3>Available Spaces</h3>
+            <p>Bikes: {{ parking_data['counts']['bikes'] }}</p>
+            <p>Cars: {{ parking_data['counts']['cars'] }}</p>
+            <p>Bicycles: {{ parking_data['counts']['bicycles'] }}</p>
+        </div>
+    </div>
+    
+    <div class="quick-actions">
+        <h3>Quick Actions</h3>
+        <div class="action-buttons">
+            <a href="{{ url_for('vehicle_entry') }}" class="button">New Entry</a>
+            <a href="{{ url_for('remove_vehicle') }}" class="button">Remove Vehicle</a>
+            <a href="{{ url_for('generate_bill') }}" class="button">Generate Bill</a>
+        </div>
+    </div>
+{% endblock %}

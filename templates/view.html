@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Currently Parked Vehicles</h2>
+    
+    {% if count == 0 %}
+        <p>No vehicles currently parked.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Vehicle No.</th>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicles %}
+                    {% if vehicle[0] != 'XXXX-XX-XXXX' %}
+                        <tr>
+                            <td>{{ vehicle[0] }}</td>
+                            <td>{{ vehicle[1] }}</td>
+                            <td>{{ vehicle[2] }}</td>
+                            <td>{{ vehicle[3] }}</td>
+                            <td>{{ vehicle[4] }}</td>
+                            <td>{{ vehicle[5] }}</td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <p class="total">Total Vehicles: {{ count }}</p>
+    {% endif %}
+{% endblock %}
